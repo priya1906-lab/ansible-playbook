@@ -1,22 +1,37 @@
 ---
-- hosts: webservers
-  user: ansible
-  become: true
-  connection: ssh
+- name: Deploy Flip[kart
+  hosts: webservers
+  become: yes
 
   tasks:
 
-    - name: Deploy Flipkart
+    - name: Install packages
       action: yum pkg=httpd state=present
 
-    - name: Start httpd Server on Host Machines
+    - name: Install packages
+      action: yum pkg=git state=present
+    
+    - name: Ensure httpd is running
       action: service name=httpd state=started
 
-    - name: Copy Flipkart Clone to ansible
+    - name: Clone Flipkart
+      git:
+         repo: "https://github.com/Msocial123/Flipkart-Clone.git"
+         dest: "/home/ansible/Flipkart-Clone"
+         version: master
+         force: yes
+    - name: Copy application
       copy:
-        src: https://github.com/Msocial123/Flipkart-Clone.git
-        dest: /home/ansible/ansible-playbook/ansible-playbook
-        user: ansible
-        group: ansible
-        mode: '0644'
+         src: "/home/ansible/Flipkart-Clone"
+         dest: "/var/www/html/"
+         owner: apache
+         group: apache
+         mode: '0755'
+         remote_src: yes
 
+    - name: Set correct Permission
+      file: 
+         path: /var/www/html/
+         owner: apache
+         group: apache
+         recurse: yes
