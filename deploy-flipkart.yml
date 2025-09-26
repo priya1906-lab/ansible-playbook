@@ -1,0 +1,22 @@
+---
+- hosts: webservers
+  user: ansible
+  become: true
+  connection: ssh
+
+  tasks:
+
+    - name: Deploy Flipkart
+      action: yum pkg=httpd state=present
+
+    - name: Start httpd Server on Host Machines
+      action: service name=httpd state=started
+
+    - name: Copy Flipkart Clone to ansible
+      copy:
+        src: ./Flipkart-Clone/
+        dest: /var/www/html
+        user: ansible
+        group: ansible
+        mode: '0644'
+
