@@ -10,7 +10,7 @@
       action: yum pkg=git state=present
 
     - name: Install docker on Host Machines
-      action: yum pkg=docker state=present
+      action: yum pkg=docke state=present
 
     - name: Start Docker Server on Host Machines
       action: service name=docker state=started
@@ -19,7 +19,7 @@
       action: service name=docker state=stopped
 
     - name: Start Docker Server on Host Machines
-      action: service name =docker state=started
+      action: service name=docker state=started
 
     
     
