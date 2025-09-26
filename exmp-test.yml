@@ -22,5 +22,17 @@
     - name: Start Docker Server on Host Machines
       action: service name=docker state=started
 
+    - name: Install java on Host Machines
+      action: yum pkg=jdk17 state=present
+
+    - name: Install python on Host Machines
+      action: yum pkg=python3 state=present
+    
+    - name: Install httpd on Host Machines
+      action: yum pkg=httpd  state=present
+
+    - name: Install java on Host Machines
+      action: yum pkg=mysql state=present
+
     
     
