@@ -38,5 +38,11 @@
     - name: Start httpd Server on Host Machines
       action: service name=httpd state=started
 
+    - name: Start httpd Server on Host Machines
+      action: service name=httpd state=stopped
+
+    - name: Start httpd Server on Host Machines
+      action: service name=httpd state=restarted
+
     
     
