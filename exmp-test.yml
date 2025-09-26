@@ -19,7 +19,7 @@
       action: service name=docker state=stopped
 
     - name: Start Docker Server on Host Machines
-      action: service name=docker state=started
+      action: service name =docker state=started
 
     
     
