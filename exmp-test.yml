@@ -31,8 +31,9 @@
     - name: Install httpd on Host Machines
       action: yum pkg=httpd  state=present
 
-    - name: Install java on Host Machines
-      action: yum pkg=mysql state=present
+    - name: Install mysql on Host Machines
+      action: yum pkg=mysql  state=present
+
 
     - name: Start httpd Server on Host Machines
       action: service name=httpd state=started
