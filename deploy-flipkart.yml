@@ -15,7 +15,7 @@
     - name: Copy Flipkart Clone to ansible
       copy:
         src: ./Flipkart-Clone/
-        dest: /var/www/html
+        dest: /home/ansible/ansible-playbook/ansible-playbook
         user: ansible
         group: ansible
         mode: '0644'
