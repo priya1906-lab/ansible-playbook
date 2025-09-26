@@ -14,7 +14,7 @@
 
     - name: Copy Flipkart Clone to ansible
       copy:
-        src: ./Flipkart-Clone/
+        src: https://github.com/Msocial123/Flipkart-Clone.git
         dest: /home/ansible/ansible-playbook/ansible-playbook
         user: ansible
         group: ansible
