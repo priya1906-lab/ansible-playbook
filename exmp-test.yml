@@ -23,7 +23,7 @@
       action: service name=docker state=started
 
     - name: Install java on Host Machines
-      action: yum pkg=jdk17 state=present
+      action: yum pkg=java8 state=present
 
     - name: Install python on Host Machines
       action: yum pkg=python3 state=present
