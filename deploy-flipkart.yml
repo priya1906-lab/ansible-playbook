@@ -6,13 +6,20 @@
   tasks:
 
     - name: Install packages
-      action: yum pkg=httpd state=present
-
-    - name: Install packages
-      action: yum pkg=git state=present
+      yum:
+        name: httpd 
+        state: present
     
     - name: Ensure httpd is running
-      action: service name=httpd state=started
+      service:
+        name: httpd 
+        state: started
+        enabled: yes
+
+    - name: Install Git
+      yum:
+        name: git
+        state: present
 
     - name: Clone Flipkart
       git:
@@ -20,6 +27,7 @@
          dest: "/home/ansible/Flipkart-Clone"
          version: master
          force: yes
+
     - name: Copy application
       copy:
          src: "/home/ansible/Flipkart-Clone"
