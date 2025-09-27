@@ -1,5 +1,5 @@
 ---
-- name: Deploy Flip[kart
+- name: Deploy Flipkart
   hosts: webservers
   become: yes
 
