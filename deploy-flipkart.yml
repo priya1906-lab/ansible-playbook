@@ -3,7 +3,8 @@
   hosts: webservers
   become: yes
   connection: ssh
-  
+  user: ansible
+
 
   tasks:
 
@@ -36,7 +37,6 @@
          dest: "/var/www/html/"
          owner: apache
          group: apache
-         mode: '0755'
          remote_src: yes
 
     - name: Set correct Permission
@@ -44,4 +44,5 @@
          path: /var/www/html/
          owner: apache
          group: apache
+         mode: '0755'
          recurse: yes
