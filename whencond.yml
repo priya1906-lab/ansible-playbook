@@ -1,0 +1,32 @@
+---
+- name: Conditionally install packages
+  hosts: webservers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Gather installed package facts
+      package_facts:
+        manager: auto
+
+    - name: Install Git if not present
+      yum:
+        name: git
+        state: present
+      when: "'git' not in ansible_facts.packages"
+
+    - name: Install Java if not present
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+      when: "'java-1.8.0-openjdk' not in ansible_facts.packages"
+
+    - name: Install Python if not present
+      yum:
+        name: python3
+        state: present
+      when: "'python3' not in ansible_facts.packages"
+
+    - name: Continue with next task
+      debug:
+        msg: "All required packages are now installed."
