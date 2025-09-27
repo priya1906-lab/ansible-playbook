@@ -37,8 +37,7 @@
          src: "/home/ansible/Flipkart-Clone"
          dest: "/var/www/html/"
          owner: apache
-         group: apache
-         remote_src: no
+
 
     - name: Set correct Permission
       file: 
