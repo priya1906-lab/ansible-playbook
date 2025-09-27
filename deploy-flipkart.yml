@@ -2,6 +2,8 @@
 - name: Deploy Flipkart
   hosts: webservers
   become: yes
+  connection: ssh
+  
 
   tasks:
 
