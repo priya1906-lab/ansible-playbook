@@ -1,0 +1,39 @@
+---
+- hosts: webservers
+  user: ansible
+  become: true
+  connection: ssh
+ 
+  tasks:
+ 
+    - name: Install Git
+      action: yum pkg=git state=present
+      ignore_errors: yes
+ 
+    - name: Install Apache (httpd)
+      action: yum pkg=httpd state=present
+      ignore_errors: yes
+ 
+    - name: Enable and start Apache service
+      action: service name=httpd state=started enabled=yes
+      ignore_errors: yes
+ 
+    - name: Remove default Apache index.html
+      action: file path=/var/www/html/index.html state=absent
+      ignore_errors: yes
+   
+    - name: Clone Flipkart Clone repository
+      git:
+        repo: "https://github.com/Msocial123/Flipkart-Clone.git"
+        dest: "/home/ansible/Flipkart-Clone"
+        version: main
+        force: yes
+      ignore_errors: yes
+ 
+    - name: Copy application code to web root
+      action: shell cp -r /home/ansible/Flipkart-Clone/* /var/www/html/
+      ignore_errors: yes
+ 
+    - name: Set correct permissions for web root
+      action: file path=/var/www/html recurse=yes owner=apache group=apache mode=0755
+      ignore_errors: yes
