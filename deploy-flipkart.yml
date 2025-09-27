@@ -30,6 +30,10 @@
          dest: "/home/ansible/Flipkart-Clone"
          version: main
          force: yes
+    - name: Remove default Apache index.html
+      file:
+         path: /var/www/html/index.html
+         state: absent
 
     - name: Copy application
       copy:
